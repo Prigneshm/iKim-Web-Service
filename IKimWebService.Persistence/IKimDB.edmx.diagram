@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2b8a6b4f0b2a4e6db5f86181ac70a600" Name="Diagram1">
+        <EntityTypeShape EntityType="IKimDBModel.Address" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IKimDBModel.AuditTrail" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IKimDBModel.Category" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IKimDBModel.FulfillmentLog" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="IKimDBModel.Item" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="IKimDBModel.ItemPrice" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="IKimDBModel.Order" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IKimDBModel.OrderLine" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="IKimDBModel.PricingTier" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="IKimDBModel.Stock" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="IKimDBModel.StockItem" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IKimDBModel.Store" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="IKimDBModel.StoreType" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="IKimDBModel.UnitOfMeasure" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="IKimDBModel.User" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="IKimDBModel.UserType" Width="1.5" PointX="4.75" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

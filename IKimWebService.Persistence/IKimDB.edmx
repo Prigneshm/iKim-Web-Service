@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="IKimDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Line1" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Line2" Type="varchar" MaxLength="250" />
+          <Property Name="Line3" Type="varchar" MaxLength="250" />
+          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AuditId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuditTrail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="int" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="AuditId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FulfillmentLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderLineId" Type="int" Nullable="false" />
+          <Property Name="QuantityFulfilled" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Notes" Type="varchar" MaxLength="50" />
+          <Property Name="AuditId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+          <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="HSNCode" Type="int" Nullable="false" />
+          <Property Name="GST" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CGST" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SGST" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="AuditId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemPrice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="PricingTierId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="AuditId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="StoreId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AuditId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderLine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="QuantityRequested" Type="int" Nullable="false" />
+          <Property Name="AuditId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PricingTier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreId" Type="int" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="AuditId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StockItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="AuditId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContactPerson" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="AlternativePhoneNumber" Type="varchar" MaxLength="15" />
+          <Property Name="AddressId" Type="int" />
+          <Property Name="StoreTypeId" Type="int" Nullable="false" />
+          <Property Name="PricingTierId" Type="int" Nullable="false" />
+          <Property Name="ParentStoreId" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="AuditId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StoreType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnitOfMeasure">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+          <Property Name="Value" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="UserTypeId" Type="int" Nullable="false" />
+          <Property Name="StoreId" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="AuditId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="IKimDBModelStoreContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuditTrail" EntityType="Self.AuditTrail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FulfillmentLog" EntityType="Self.FulfillmentLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemPrice" EntityType="Self.ItemPrice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderLine" EntityType="Self.OrderLine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PricingTier" EntityType="Self.PricingTier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockItem" EntityType="Self.StockItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreType" EntityType="Self.StoreType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitOfMeasure" EntityType="Self.UnitOfMeasure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IKimDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="IKimDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="IKimDBModel.Address" />
+          <EntitySet Name="AuditTrails" EntityType="IKimDBModel.AuditTrail" />
+          <EntitySet Name="Categories" EntityType="IKimDBModel.Category" />
+          <EntitySet Name="FulfillmentLogs" EntityType="IKimDBModel.FulfillmentLog" />
+          <EntitySet Name="Items" EntityType="IKimDBModel.Item" />
+          <EntitySet Name="ItemPrices" EntityType="IKimDBModel.ItemPrice" />
+          <EntitySet Name="Orders" EntityType="IKimDBModel.Order" />
+          <EntitySet Name="OrderLines" EntityType="IKimDBModel.OrderLine" />
+          <EntitySet Name="PricingTiers" EntityType="IKimDBModel.PricingTier" />
+          <EntitySet Name="Stocks" EntityType="IKimDBModel.Stock" />
+          <EntitySet Name="StockItems" EntityType="IKimDBModel.StockItem" />
+          <EntitySet Name="Stores" EntityType="IKimDBModel.Store" />
+          <EntitySet Name="StoreTypes" EntityType="IKimDBModel.StoreType" />
+          <EntitySet Name="UnitOfMeasures" EntityType="IKimDBModel.UnitOfMeasure" />
+          <EntitySet Name="Users" EntityType="IKimDBModel.User" />
+          <EntitySet Name="UserTypes" EntityType="IKimDBModel.UserType" />
+        </EntityContainer>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Line1" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Line2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Line3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AuditId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuditTrail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="Int32" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="AuditId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FulfillmentLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderLineId" Type="Int32" Nullable="false" />
+          <Property Name="QuantityFulfilled" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AuditId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UnitOfMeasureId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="HSNCode" Type="Int32" Nullable="false" />
+          <Property Name="GST" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="CGST" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SGST" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="AuditId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemPrice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="PricingTierId" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="AuditId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StoreId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AuditId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderLine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="QuantityRequested" Type="Int32" Nullable="false" />
+          <Property Name="AuditId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PricingTier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreId" Type="Int32" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AuditId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StockItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockId" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="AuditId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactPerson" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="AlternativePhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="AddressId" Type="Int32" />
+          <Property Name="StoreTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PricingTierId" Type="Int32" Nullable="false" />
+          <Property Name="ParentStoreId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="AuditId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StoreType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnitOfMeasure">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+          <Property Name="StoreId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="AuditId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IKimDBModelStoreContainer" CdmEntityContainer="IKimDBEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="IKimDBModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="AuditId" ColumnName="AuditId" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Line3" ColumnName="Line3" />
+                <ScalarProperty Name="Line2" ColumnName="Line2" />
+                <ScalarProperty Name="Line1" ColumnName="Line1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuditTrails">
+            <EntityTypeMapping TypeName="IKimDBModel.AuditTrail">
+              <MappingFragment StoreEntitySet="AuditTrail">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="IKimDBModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="AuditId" ColumnName="AuditId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FulfillmentLogs">
+            <EntityTypeMapping TypeName="IKimDBModel.FulfillmentLog">
+              <MappingFragment StoreEntitySet="FulfillmentLog">
+                <ScalarProperty Name="AuditId" ColumnName="AuditId" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="QuantityFulfilled" ColumnName="QuantityFulfilled" />
+                <ScalarProperty Name="OrderLineId" ColumnName="OrderLineId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="IKimDBModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="AuditId" ColumnName="AuditId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SGST" ColumnName="SGST" />
+                <ScalarProperty Name="CGST" ColumnName="CGST" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="HSNCode" ColumnName="HSNCode" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemPrices">
+            <EntityTypeMapping TypeName="IKimDBModel.ItemPrice">
+              <MappingFragment StoreEntitySet="ItemPrice">
+                <ScalarProperty Name="AuditId" ColumnName="AuditId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PricingTierId" ColumnName="PricingTierId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="IKimDBModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="AuditId" ColumnName="AuditId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderLines">
+            <EntityTypeMapping TypeName="IKimDBModel.OrderLine">
+              <MappingFragment StoreEntitySet="OrderLine">
+                <ScalarProperty Name="AuditId" ColumnName="AuditId" />
+                <ScalarProperty Name="QuantityRequested" ColumnName="QuantityRequested" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PricingTiers">
+            <EntityTypeMapping TypeName="IKimDBModel.PricingTier">
+              <MappingFragment StoreEntitySet="PricingTier">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="IKimDBModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="AuditId" ColumnName="AuditId" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockItems">
+            <EntityTypeMapping TypeName="IKimDBModel.StockItem">
+              <MappingFragment StoreEntitySet="StockItem">
+                <ScalarProperty Name="AuditId" ColumnName="AuditId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="IKimDBModel.Store">
+              <MappingFragment StoreEntitySet="Store">
+                <ScalarProperty Name="AuditId" ColumnName="AuditId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ParentStoreId" ColumnName="ParentStoreId" />
+                <ScalarProperty Name="PricingTierId" ColumnName="PricingTierId" />
+                <ScalarProperty Name="StoreTypeId" ColumnName="StoreTypeId" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="AlternativePhoneNumber" ColumnName="AlternativePhoneNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreTypes">
+            <EntityTypeMapping TypeName="IKimDBModel.StoreType">
+              <MappingFragment StoreEntitySet="StoreType">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitOfMeasures">
+            <EntityTypeMapping TypeName="IKimDBModel.UnitOfMeasure">
+              <MappingFragment StoreEntitySet="UnitOfMeasure">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="IKimDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="AuditId" ColumnName="AuditId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="IKimDBModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

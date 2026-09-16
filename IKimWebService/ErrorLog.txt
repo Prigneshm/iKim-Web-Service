@@ -1,0 +1,11 @@
+27-03-2026 12:35:50: Attempt 1 failed - The specified string is not in the form required for an e-mail address.
+27-03-2026 12:36:05: Attempt 2 failed - The specified string is not in the form required for an e-mail address.
+27-03-2026 13:03:15: Attempt 1 failed - The specified string is not in the form required for an e-mail address.
+27-03-2026 13:03:24: Attempt 2 failed - The specified string is not in the form required for an e-mail address.
+30-03-2026 11:56:47: Attempt 1 failed - The specified string is not in the form required for an e-mail address.
+30-03-2026 15:48:20: Attempt 1 failed - The specified string is not in the form required for an e-mail address.
+30-03-2026 15:48:21: Attempt 2 failed - The specified string is not in the form required for an e-mail address.
+30-03-2026 15:48:23: Attempt 3 failed - The specified string is not in the form required for an e-mail address.
+30-03-2026 15:48:41: Attempt 1 failed - The specified string is not in the form required for an e-mail address.
+30-03-2026 15:48:42: Attempt 2 failed - The specified string is not in the form required for an e-mail address.
+30-03-2026 15:48:44: Attempt 3 failed - The specified string is not in the form required for an e-mail address.
